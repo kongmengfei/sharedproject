@@ -1,0 +1,43 @@
+<div style="text-align:center;">
+    <a alt="Fundraising Thermometer">
+        <img border="0" id="img"
+            src="http://www.coolfundraisingideas.net/thermometer/thermometer.php?currency=dollar&goal=100&raised=25&color=blue&size=large">
+    </a>
+    <p style="font-size:.8em; color:#999">This is Thermometer:</p>
+</div>
+
+<table border="0" cellpadding="1" cellspacing="3">
+    <tr>
+        <td>Goal:</td>
+        <td>&#36;</td>
+        <td><input type="text" name="goal" size="6" maxlength="8" align="right" id="goal"></td>
+    </tr>
+    <tr>
+        <td>Amount Recovered:</td>
+        <td>&#36;</td>
+        <td><input type="text" name="raised" size="6" maxlength="8" align="right" id="raised"></td>
+    </tr>
+</table>
+
+<br />
+
+<input type="button" name="createbtn" value="Submit" id="createbtn">
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#createbtn").click(function () {
+            var imgsrc = $('#img').attr('src');
+            var goal_v = $('#goal').val();
+            var raised_v = $('#raised').val();
+
+            let newimgsrc = SetUrlKeyValue('raised', raised_v, false, SetUrlKeyValue('goal', goal_v, false, imgsrc));
+
+            $('#img').attr('src', newimgsrc);
+            alert(newimgsrc);
+        });
+
+    });
+
+</script>

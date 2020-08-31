@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "Sgakq/O5EV68i3a2D1GokQyiQnfUlnFZYgE8h9Hn/ICguUvwAjidkAqzcjR1/OOxYqhF5gsZyWkk8z6Zmuo6Mw==",
+  "success": true,
+  "projectFilePath": "D:\\github\\sharedproject\\ConsoleAppCore\\ConsoleAppCore\\ConsoleAppCore.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\mengfeik\\.nuget\\packages\\microsoft.sharepointonline.csom\\16.1.20324.12000\\microsoft.sharepointonline.csom.16.1.20324.12000.nupkg.sha512"
+  ],
+  "logs": []
+}

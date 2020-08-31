@@ -1,0 +1,11 @@
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('input[type="button"][value="Finish"]').closest("table").parent('td').each(function () {
+            $(this).insertBefore($(this).prev('td'));
+        });
+
+    });
+
+</script>

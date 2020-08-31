@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"
+        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/fixedheader/3.1.7/js/dataTables.fixedHeader.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.7/css/fixedHeader.dataTables.min.css" />
+</head>
+
+<body>
+    <div>Choose report</div>
+    <div style="margin-bottom:25px">
+        big Audits: <input type="radio" id="bigAudits" name="Audits" value="big Audits"
+            onclick="ajaxCall(this)" /><br />
+        small Audits: <input type="radio" id="smallAudits" name="Audits" value="small Audits"
+            onclick="ajaxCall(this)" />
+    </div>
+
+    <table id="bigReport" class="display" style="width:100%;display:none" border="0">
+        <thead>
+            <tr>
+                <th>Edit</th>
+                <th>Report #</th>
+                <th>OOO</th>
+                <th>RRR</th>
+                <th>Subject</th>
+                <th>big Code</th>
+                <th>Start Date</th>
+                <th>Modify Date</th>
+                <th>Close Date</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+    <table id="smallReport" class="display" style="width:100%;display:none" border="0">
+        <thead>
+            <tr>
+                <th>Edit</th>
+                <th>Report #</th>
+                <th>OOO</th>
+                <th>RRR</th>
+                <th>Subject</th>
+                <th>small Code</th>
+                <th>Start Date</th>
+                <th>Modify Date</th>
+                <th>Close Date</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+    <script type="text/javascript">
+        function ajaxCall(listName) {
+            
+            if (listName.value === 'big Audits') {
+                document.getElementById("bigReport").style.display = "table";
+                document.getElementById("smallReport").style.display = "none";
+            } else {
+                document.getElementById("smallReport").style.display = "table";
+                document.getElementById("bigReport").style.display = "none";
+            }
+
+            /*                $.ajax({
+                                     url: _spPageContextInfo.webAbsoluteUrl + "/_api/web/lists/getbytitle('" + listName.value + "')/items",
+                                     type: "GET",
+                                     headers: {
+                                         "Accept": "application/json;odata=verbose"
+                                     },
+                                     success: dosomething,
+                                     error: dosomethingelse
+                                 })                  */
+
+            var data = [];
+            for (var i = 0; i < 25; i++) {
+                var temobj = {
+                    reportNum: "00" + i,
+                    OOO: "o0" + i,
+                    RRR: "r0" + i,
+                    Subject: "sssss",
+                    big_code: "b0" + i,
+                    StartDate: "2020-02-10",
+                    modifydate: "2020-03-10",
+                    CloseDate: "2020-05-10"
+                };
+
+                data.push(temobj);
+            }
+            dosomething(data);
+        }
+
+        function dosomething(data) {
+
+            if (typeof table != "undefined") {
+                table.clear();
+                table.destroy();
+            }
+
+            var radioValue = "";
+
+            if (document.querySelector("#bigAudits").checked) {
+                radioValue = "bigReport"
+            } else {
+                radioValue = "smallReport"
+            }
+
+            //  data = data.d.results;
+            var html = "";
+            $.each(data, function (index, value) {
+                //console.log(index+"-"+value);
+                html += "<tr>";
+                html += "<td size='10'><a href='edit.aspx?id=" + value.ID + "'>edit</a></td>";
+                html += "<td>" + value.reportNum + "</td>";
+                html += "<td>" + value.OOO + "</td>";
+                html += "<td>" + value.RRR + "</td>";
+                html += "<td>" + value.Subject + "</td>";
+                html += "<td>" + value.big_code + "</td>";
+                html += "<td>" + value.StartDate + "</td>";
+                html += "<td>" + value.modifydate + "</td>";
+                html += "<td>" + value.CloseDate + "</td>";
+                html += "</tr>";
+            })
+            $('#' + radioValue + '  tbody').append(html);
+
+            // Setup - add a text input to each footer cell
+            if ($('#' + radioValue + '  thead tr').length < 2) {
+                $('#' + radioValue + '  thead tr').clone(true).appendTo('#' + radioValue + ' thead');
+            }
+
+            $('#' + radioValue + ' thead tr:eq(1) th').each(function (i) {
+                var title = $(this).text();
+                if (i === 0) { //don't need the textbox for the 'Edit' column
+                    $(this).html(' ');
+                } else {
+                    $(this).html('<input type="text" size="10" style="background-color:#eeeeee" placeholder="Search ' + title + '" />');
+                }
+
+
+                $('input', this).on('keyup change', function () {
+                    if (table.column(i).search() !== this.value) {
+                        table
+                            .column(i)
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            });
+
+            this.table = $('#' + radioValue).DataTable({
+                orderCellsTop: true,
+                fixedHeader: true,
+                destroy: true
+            });
+        }
+
+        function dosomethingelse() {
+            alert("error");
+            console.log("dosomethingelse");
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Local workbench",
+            "type": "chrome",
+            "request": "launch",
+            "url": "https://localhost:4321/temp/workbench.html",
+            "webRoot": "${workspaceRoot}",
+            "sourceMaps": true,
+            "sourceMapPathOverrides": {
+                "webpack:///../../../src/*": "${webRoot}/src/*",
+                "webpack:///../../../../src/*": "${webRoot}/src/*",
+                "webpack:///../../../../../src/*": "${webRoot}/src/*"
+            },
+            "runtimeArgs": [
+                "--remote-debugging-port=9222"
+            ]
+        },
+        {
+            "name": "Hosted workbench",
+            "type": "chrome",
+            "request": "launch",
+            "url": "https://isvdevchat.sharepoint.com/sites/sbdev/_layouts/workbench.aspx",
+            "webRoot": "${workspaceRoot}",
+            "sourceMaps": true,
+            "sourceMapPathOverrides": {
+                "webpack:///../../../src/*": "${webRoot}/src/*",
+                "webpack:///../../../../src/*": "${webRoot}/src/*",
+                "webpack:///../../../../../src/*": "${webRoot}/src/*"
+            },
+            "runtimeArgs": [
+                "--remote-debugging-port=9222"
+            ]
+        }
+    ]
+}
