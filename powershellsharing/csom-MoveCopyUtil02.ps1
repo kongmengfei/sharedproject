@@ -3,10 +3,10 @@ Add-Type -Path "C:\Program Files\Common Files\Microsoft Shared\Web Server Extens
 Add-Type -Path "C:\Program Files\Common Files\Microsoft Shared\Web Server Extensions\16\ISAPI\Microsoft.SharePoint.Client.Runtime.dll"
 
 #Admin User Principal Name
-$username = 'admin@ISVDevChat.onmicrosoft.com'
+$username = 'admin@abc.onmicrosoft.com'
 
 #Get Password as secure String
-$password = ConvertTo-SecureString "dlmm=920625m" -AsPlainText -Force
+$password = ConvertTo-SecureString "xxxxxxx" -AsPlainText -Force
 
 #Authenticate
 $credentials = New-Object Microsoft.SharePoint.Client.SharePointOnlineCredentials($username , $password)
@@ -37,9 +37,9 @@ Function Move-SPOFile([String]$SiteURL, [String]$SourceFileURL, [String]$TargetF
 }
   
 #Set Config Parameters
-$SiteURL="https://isvdevchat.sharepoint.com/sites/sbdev"
-$SourceFileURL="https://isvdevchat.sharepoint.com/sites/sbdev/My%20test%20doc%20lib/Pictures/200MB.zip"
-$TargetFileURL="https://isvdevchat.sharepoint.com/sites/sbdev/My%20test%20doc%20lib/SDK/200MB.zip"
+$SiteURL="https://abc.sharepoint.com/sites/sbdev"
+$SourceFileURL="https://abc.sharepoint.com/sites/sbdev/My%20test%20doc%20lib/Pictures/200MB.zip"
+$TargetFileURL="https://abc.sharepoint.com/sites/sbdev/My%20test%20doc%20lib/SDK/200MB.zip"
   
 
 #Call the function to Move the File
