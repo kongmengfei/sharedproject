@@ -1,0 +1,1305 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Graph.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Graph.AuthenticateRequestAsyncDelegate">
+            <summary>
+            Authenticate request async delegate.
+            </summary>
+            <param name="request">The <see cref="T:System.Net.Http.HttpRequestMessage"/> to authenticate.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.Graph.DelegateAuthenticationProvider">
+            <summary>
+            A default <see cref="T:Microsoft.Graph.IAuthenticationProvider"/> implementation.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.DelegateAuthenticationProvider.#ctor(Microsoft.Graph.AuthenticateRequestAsyncDelegate)">
+            <summary>
+            Constructs an <see cref="T:Microsoft.Graph.DelegateAuthenticationProvider"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.DelegateAuthenticationProvider.AuthenticateRequestAsyncDelegate">
+            <summary>
+            Gets or sets the delegate for authenticating requests.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.DelegateAuthenticationProvider.AuthenticateRequestAsync(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Authenticates the specified request message.
+            </summary>
+            <param name="request">The <see cref="T:System.Net.Http.HttpRequestMessage"/> to authenticate.</param>
+        </member>
+        <member name="T:Microsoft.Graph.IAuthenticationProvider">
+            <summary>
+            Interface for authenticating requests.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.IAuthenticationProvider.AuthenticateRequestAsync(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Authenticates the specified request message.
+            </summary>
+            <param name="request">The <see cref="T:System.Net.Http.HttpRequestMessage"/> to authenticate.</param>
+            <returns>The task to await.</returns>
+        </member>
+        <member name="T:Microsoft.Graph.CoreConstants">
+            <summary>
+            Constants for the Graph Core library.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Graph.CoreConstants.PollingIntervalInMs">
+            <summary>
+            Polling interval for task completion.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Graph.CoreConstants.Headers">
+            <summary>
+            Header constants.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Graph.CoreConstants.Headers.Bearer">
+            Authorization bearer.
+        </member>
+        <member name="F:Microsoft.Graph.CoreConstants.Headers.SdkVersionHeaderName">
+            SDK Version header
+        </member>
+        <member name="F:Microsoft.Graph.CoreConstants.Headers.SdkVersionHeaderValueFormatString">
+            SDK Version header
+        </member>
+        <member name="F:Microsoft.Graph.CoreConstants.Headers.FormUrlEncodedContentType">
+            Content-Type header
+        </member>
+        <member name="F:Microsoft.Graph.CoreConstants.Headers.ThrowSiteHeaderName">
+            Throw-site header
+        </member>
+        <member name="T:Microsoft.Graph.CoreConstants.Serialization">
+            <summary>
+            Serialization constants.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Graph.CoreConstants.Serialization.ODataType">
+            OData type
+        </member>
+        <member name="T:Microsoft.Graph.Error">
+            <summary>
+            The error object that handles unsuccessful responses returned from the service.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.Error.Code">
+            <summary>
+            The HTTP status code.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.Error.InnerError">
+            <summary>
+            The inner error of the response. These are additional error objects that may be more specific than the top level error.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.Error.Message">
+            <summary>
+            The error message.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.Error.ThrowSite">
+            <summary>
+            The Throw site of the error.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.Error.AdditionalData">
+            <summary>
+            The AdditionalData property bag.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.Error.ToString">
+            <summary>
+            Concatenates the error into a string.
+            </summary>
+            <returns>A human-readable string error response.</returns>
+        </member>
+        <member name="T:Microsoft.Graph.ErrorResponse">
+            <summary>
+            The error response object from the service on an unsuccessful call.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.ErrorResponse.Error">
+            <summary>
+            The <see cref="P:Microsoft.Graph.ErrorResponse.Error"/> returned by the service.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.ErrorResponse.AdditionalData">
+            <summary>
+            Additional data returned in the call.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Graph.ServiceException">
+            <summary>
+            Graph service exception.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.ServiceException.#ctor(Microsoft.Graph.Error,System.Exception)">
+            <summary>
+            Creates a new service exception.
+            </summary>
+            <param name="error">The error that triggered the exception.</param>
+            <param name="innerException">The possible innerException.</param>
+        </member>
+        <member name="P:Microsoft.Graph.ServiceException.Error">
+            <summary>
+            The error from the service exception.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.ServiceException.ResponseHeaders">
+            ResponseHeaders and StatusCode exposed as pass-through.
+        </member>
+        <member name="P:Microsoft.Graph.ServiceException.StatusCode">
+            <summary>
+            The HTTP status code from the response.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.ServiceException.IsMatch(System.String)">
+            <summary>
+            Checks if a given error code has been returned in the response at any level in the error stack.
+            </summary>
+            <param name="errorCode">The error code.</param>
+            <returns>True if the error code is in the stack.</returns>
+        </member>
+        <member name="T:Microsoft.Graph.ExpressionExtractHelper">
+            <summary>
+            Helper class to extract $select or $expand parameters from strongly-typed expressions.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.ExpressionExtractHelper.ExtractMembers``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.String@)">
+            <summary>
+            Extract referenced members of the type T from the given expression as a list of strings
+            </summary>
+            <param name="expression">The expression to search</param>
+            <param name="error">Message about what's wrong with the expression if return value is null</param>
+            <returns>A comma-separated list of strings or null</returns>
+        </member>
+        <member name="T:Microsoft.Graph.StringHelper">
+            <summary>
+            Helper class for string casing.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.StringHelper.ConvertTypeToTitleCase(System.String)">
+            <summary>
+            Converts the type string to title case.
+            </summary>
+            <param name="typeString">The type string.</param>
+            <returns>The converted string.</returns>
+        </member>
+        <member name="M:Microsoft.Graph.StringHelper.ConvertTypeToLowerCamelCase(System.String)">
+            <summary>
+            Converts the type string to lower camel case.
+            </summary>
+            <param name="typeString">The type string.</param>
+            <returns>The converted string.</returns>
+        </member>
+        <member name="M:Microsoft.Graph.StringHelper.ConvertIdentifierToLowerCamelCase(System.String)">
+            <summary>
+            Converts the identifier string to lower camel case.
+            </summary>
+            <param name="identifierString">The identifier string.</param>
+            <returns>The converted string.</returns>
+        </member>
+        <member name="T:Microsoft.Graph.UrlHelper">
+            <summary>
+            Helper class for working with URLs.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.UrlHelper.GetQueryOptions(System.Uri)">
+            <summary>
+            Parse query options from the URL.
+            </summary>
+            <param name="resultUri"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.Graph.AsyncOperationStatus">
+            <summary>
+            The type AsyncOperationStatus.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.AsyncOperationStatus.Operation">
+            <summary>
+            Gets or sets operation.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.AsyncOperationStatus.PercentageComplete">
+            <summary>
+            Gets or sets percentageComplete.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.AsyncOperationStatus.Status">
+            <summary>
+            Gets or sets status.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.AsyncOperationStatus.AdditionalData">
+            <summary>
+            Gets or sets additional data.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Graph.CollectionPage`1">
+            <summary>
+            A page of results from a collection.
+            </summary>
+            <typeparam name="T">The type of the item contained within the collection.</typeparam>
+        </member>
+        <member name="M:Microsoft.Graph.CollectionPage`1.#ctor">
+            <summary>
+            Creates the collection page.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.CollectionPage`1.#ctor(System.Collections.Generic.IList{`0})">
+            <summary>
+            Creates the collection page.
+            </summary>
+            <param name="currentPage">The current page.</param>
+        </member>
+        <member name="P:Microsoft.Graph.CollectionPage`1.CurrentPage">
+            <summary>
+            The current page.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.CollectionPage`1.IndexOf(`0)">
+            <summary>
+            Get the index of an item in the current page.
+            </summary>
+            <param name="item">The item to get the index for.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Graph.CollectionPage`1.Insert(System.Int32,`0)">
+            <summary>
+            Insert an item into the current page.
+            </summary>
+            <param name="index">The index to insert the item at.</param>
+            <param name="item">The item to insert.</param>
+        </member>
+        <member name="M:Microsoft.Graph.CollectionPage`1.RemoveAt(System.Int32)">
+            <summary>
+            Remove the item at the given index.
+            </summary>
+            <param name="index">The index to remove an item at.</param>
+        </member>
+        <member name="P:Microsoft.Graph.CollectionPage`1.Item(System.Int32)">
+            <summary>
+            Access the item at the given index.
+            </summary>
+            <param name="index">The item's index.</param>
+            <returns>The item of type T.</returns>
+        </member>
+        <member name="M:Microsoft.Graph.CollectionPage`1.Add(`0)">
+            <summary>
+            Add an item to the current page.
+            </summary>
+            <param name="item">The item to add.</param>
+        </member>
+        <member name="M:Microsoft.Graph.CollectionPage`1.Clear">
+            <summary>
+            Remove all items from the current page.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.CollectionPage`1.Contains(`0)">
+            <summary>
+            Determine whether the current page contains the given item.
+            </summary>
+            <param name="item">The item to search for.</param>
+            <returns>True if the item is found.</returns>
+        </member>
+        <member name="M:Microsoft.Graph.CollectionPage`1.CopyTo(`0[],System.Int32)">
+            <summary>
+            Copies the elements of the current page to the given array starting at the given index.
+            </summary>
+            <param name="array">The array to copy elements to.</param>
+            <param name="arrayIndex">The start index.</param>
+        </member>
+        <member name="P:Microsoft.Graph.CollectionPage`1.Count">
+            <summary>
+            Gets the number of elements in the current page.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.CollectionPage`1.IsReadOnly">
+            <summary>
+            Determines whether the current page is readonly.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.CollectionPage`1.Remove(`0)">
+            <summary>
+            Removes an item from the current page.
+            </summary>
+            <param name="item">The item to remove.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Graph.CollectionPage`1.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the current page.
+            </summary>
+            <returns>The enumerator for the current page.</returns>
+        </member>
+        <member name="P:Microsoft.Graph.CollectionPage`1.AdditionalData">
+            <summary>
+            The additional data property bag.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Graph.Date">
+            <summary>
+            Custom Date model for serialization
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.Date.#ctor(System.DateTime)">
+            <summary>
+            Internal Date constructor
+            </summary>
+            <param name="dateTime"></param>
+        </member>
+        <member name="M:Microsoft.Graph.Date.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Create a new Date object from a year, month, and day.
+            </summary>
+            <param name="year">The year.</param>
+            <param name="month">The month.</param>
+            <param name="day">The day of the month.</param>
+        </member>
+        <member name="P:Microsoft.Graph.Date.DateTime">
+            <summary>
+            The DateTime object.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.Date.Year">
+            <summary>
+            The date's year.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.Date.Month">
+            <summary>
+            The date's month.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.Date.Day">
+            <summary>
+            The date's day.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.Date.ToString">
+            <summary>
+            Convert the date to a string.
+            </summary>
+            <returns>The string value of the date in the format "yyyy-MM-dd".</returns>
+        </member>
+        <member name="T:Microsoft.Graph.Duration">
+            <summary>
+            Represents an edm.duration value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.Duration.#ctor(System.TimeSpan)">
+            <summary>
+            Create a Duration object from a TimeSpan.
+            </summary>
+            <param name="timeSpan"></param>
+        </member>
+        <member name="M:Microsoft.Graph.Duration.#ctor(System.String)">
+            <summary>
+            Create a Duration object from an ISO8601 duration.
+            </summary>
+            <param name="duration">An ISO8601 duration. http://en.wikipedia.org/wiki/ISO_8601#Durations </param>
+        </member>
+        <member name="M:Microsoft.Graph.Duration.ToString">
+            <summary>
+            Convert the stored TimeSpan into an ISO8601 duration.
+            </summary>
+            <returns>An ISO8601 duration. For example, PT1M is "period time of 1 minute"</returns>
+        </member>
+        <member name="T:Microsoft.Graph.ICollectionPage`1">
+            <summary>
+            Interface for collection pages.
+            </summary>
+            <typeparam name="T">The type of the collection.</typeparam>
+        </member>
+        <member name="P:Microsoft.Graph.ICollectionPage`1.CurrentPage">
+            <summary>
+            The current page of the collection.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.ICollectionPage`1.AdditionalData">
+            <summary>
+            The additional data property bag.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Graph.ReferenceRequestBody">
+            <summary>
+            The reference request body.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.ReferenceRequestBody.ODataId">
+            <summary>
+            The OData.id value.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Graph.TimeOfDay">
+            <summary>
+            Time of day model.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.TimeOfDay.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Create a new TimeOfDay from hours, minutes, and seconds.
+            </summary>
+            <param name="hour">The hour.</param>
+            <param name="minute">The minute.</param>
+            <param name="second">The second.</param>
+        </member>
+        <member name="P:Microsoft.Graph.TimeOfDay.Hour">
+            <summary>
+            The hour.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.TimeOfDay.Minute">
+            <summary>
+            The minute.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.TimeOfDay.Second">
+            <summary>
+            The second.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.TimeOfDay.ToString">
+            <summary>
+            The time of day, formatted as "HH:mm:ss".
+            </summary>
+            <returns>The string time of day.</returns>
+        </member>
+        <member name="T:Microsoft.Graph.AsyncMonitor`1">
+            <summary>
+            Monitor for async operations to the Graph service on the client.
+            </summary>
+            <typeparam name="T">The object type to return.</typeparam>
+        </member>
+        <member name="M:Microsoft.Graph.AsyncMonitor`1.#ctor(Microsoft.Graph.IBaseClient,System.String)">
+            <summary>
+            Construct an Async Monitor.
+            </summary>
+            <param name="client">The client to monitor.</param>
+            <param name="monitorUrl">The URL to monitor.</param>
+        </member>
+        <member name="M:Microsoft.Graph.AsyncMonitor`1.PollForOperationCompletionAsync(System.IProgress{Microsoft.Graph.AsyncOperationStatus},System.Threading.CancellationToken)">
+            <summary>
+            Poll to check for completion of an async call to the Graph service.
+            </summary>
+            <param name="progress">The progress status.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The operation task.</returns>
+        </member>
+        <member name="T:Microsoft.Graph.BaseActionMethodRequestBuilder`1">
+            <summary>
+            The base method request builder class used for POST actions.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.BaseActionMethodRequestBuilder`1.#ctor(System.String,Microsoft.Graph.IBaseClient)">
+            <summary>
+            Constructs a new BaseActionMethodRequestBuilder.
+            </summary>
+            <param name="requestUrl">The URL for the request.</param>
+            <param name="client">The <see cref="T:Microsoft.Graph.IBaseClient"/> for handling requests.</param>
+        </member>
+        <member name="M:Microsoft.Graph.BaseActionMethodRequestBuilder`1.CreateRequest(System.String,System.Collections.Generic.IEnumerable{Microsoft.Graph.Option})">
+            <summary>
+            Derived classes implement this function to construct the specific request class instance
+            when a request object is required.
+            </summary>
+            <param name="functionUrl">The URL to use for the request.</param>
+            <param name="options">The query and header options for the request.</param>
+            <returns>An instance of the request class.</returns>
+        </member>
+        <member name="M:Microsoft.Graph.BaseActionMethodRequestBuilder`1.Request(System.Collections.Generic.IEnumerable{Microsoft.Graph.Option})">
+            <summary>
+            Builds the request.
+            </summary>
+            <param name="options">The query and header options for the request.</param>
+            <returns>The built request.</returns>
+        </member>
+        <member name="M:Microsoft.Graph.BaseActionMethodRequestBuilder`1.SetParameter``1(System.String,``0,System.Boolean)">
+            <summary>
+            A helper method for injecting a parameter string for a given name and value
+            pair. This method handles the nullable case and properly wrapped and escaping
+            string values.
+            </summary>
+            <param name="name">The parameter name.</param>
+            <param name="value">The parameter value.</param>
+            <param name="nullable">A flag specifying whether the parameter is allowed to be null.</param>
+            <typeparam name="U">The type of the value parameter.</typeparam>
+            <returns>A string representing the parameter for an OData method call.</returns>
+        </member>
+        <member name="M:Microsoft.Graph.BaseActionMethodRequestBuilder`1.HasParameter(System.String)">
+            <summary>
+            Check if the parameter list contains a given name.
+            </summary>
+            <param name="name">The name to search for.</param>
+            <returns>True if the parameter list contains the given name.</returns>
+        </member>
+        <member name="M:Microsoft.Graph.BaseActionMethodRequestBuilder`1.GetParameter``1(System.String)">
+            <summary>
+            Get a parameter string for a given name.
+            </summary>
+            <typeparam name="U">The type of the value parameter.</typeparam>
+            <param name="name">The name key.</param>
+            <returns>The value associated with the given name.</returns>
+        </member>
+        <member name="T:Microsoft.Graph.BaseClient">
+            <summary>
+            A default <see cref="T:Microsoft.Graph.IBaseClient"/> implementation.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.BaseClient.#ctor(System.String,Microsoft.Graph.IAuthenticationProvider,Microsoft.Graph.IHttpProvider)">
+            <summary>
+            Constructs a new <see cref="T:Microsoft.Graph.BaseClient"/>.
+            </summary>
+            <param name="baseUrl">The base service URL. For example, "https://graph.microsoft.com/v1.0."</param>
+            <param name="authenticationProvider">The <see cref="T:Microsoft.Graph.IAuthenticationProvider"/> for authenticating request messages.</param>
+            <param name="httpProvider">The <see cref="T:Microsoft.Graph.IHttpProvider"/> for sending requests.</param>
+        </member>
+        <member name="P:Microsoft.Graph.BaseClient.AuthenticationProvider">
+            <summary>
+            Gets the <see cref="T:Microsoft.Graph.IAuthenticationProvider"/> for authenticating requests.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.BaseClient.BaseUrl">
+            <summary>
+            Gets or sets the base URL for requests of the client.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.BaseClient.HttpProvider">
+            <summary>
+            Gets the <see cref="T:Microsoft.Graph.IHttpProvider"/> for sending HTTP requests.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Graph.BaseFunctionMethodRequestBuilder`1">
+            <summary>
+            The base method request builder class.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Graph.BaseFunctionMethodRequestBuilder`1.passParametersInQueryString">
+            <summary>
+            Whether to include parameters in the query string.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.BaseFunctionMethodRequestBuilder`1.#ctor(System.String,Microsoft.Graph.IBaseClient)">
+            <summary>
+            Constructs a new BaseFunctionMethodRequestBuilder.
+            </summary>
+            <param name="requestUrl">The URL for the request.</param>
+            <param name="client">The <see cref="T:Microsoft.Graph.IBaseClient"/> for handling requests.</param>
+        </member>
+        <member name="M:Microsoft.Graph.BaseFunctionMethodRequestBuilder`1.CreateRequest(System.String,System.Collections.Generic.IEnumerable{Microsoft.Graph.Option})">
+            <summary>
+            Derived classes implement this function to construct the specific request class instance
+            when a request object is required.
+            </summary>
+            <param name="functionUrl">The URL to use for the request.</param>
+            <param name="options">The query and header options for the request.</param>
+            <returns>An instance of the request class.</returns>
+        </member>
+        <member name="M:Microsoft.Graph.BaseFunctionMethodRequestBuilder`1.Request(System.Collections.Generic.IEnumerable{Microsoft.Graph.Option})">
+            <summary>
+            Builds the request.
+            </summary>
+            <param name="options">The query and header options for the request.</param>
+            <returns>The built request.</returns>
+        </member>
+        <member name="M:Microsoft.Graph.BaseFunctionMethodRequestBuilder`1.SetParameter(System.String,System.Object,System.Boolean)">
+            <summary>
+            A helper method for injecting a parameter string for a given name and value
+            pair. This method handles the nullable case and properly wrapped and escaping
+            string values.
+            </summary>
+            <param name="name">The parameter name.</param>
+            <param name="value">The parameter value.</param>
+            <param name="nullable">A flag specifying whether the parameter is allowed to be null.</param>
+            <returns>A string representing the parameter for an OData method call.</returns>
+        </member>
+        <member name="M:Microsoft.Graph.BaseFunctionMethodRequestBuilder`1.EscapeStringValue(System.String)">
+            <summary>
+            Escapes a string value to be safe for OData method calls.
+            </summary>
+            <param name="value">The value of the string.</param>
+            <returns>A properly escaped string.</returns>
+        </member>
+        <member name="T:Microsoft.Graph.BaseRequest">
+            <summary>
+            The base request class.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Graph.BaseRequest.sdkVersionHeaderName">
+            The key for the SDK version header.
+        </member>
+        <member name="F:Microsoft.Graph.BaseRequest.sdkVersionHeaderValue">
+            The value for the SDK version header.
+        </member>
+        <member name="M:Microsoft.Graph.BaseRequest.#ctor(System.String,Microsoft.Graph.IBaseClient,System.Collections.Generic.IEnumerable{Microsoft.Graph.Option})">
+            <summary>
+            Constructs a new <see cref="T:Microsoft.Graph.BaseRequest"/>.
+            </summary>
+            <param name="requestUrl">The URL for the request.</param>
+            <param name="client">The <see cref="T:Microsoft.Graph.IBaseClient"/> for handling requests.</param>
+            <param name="options">The header and query options for the request.</param>
+        </member>
+        <member name="P:Microsoft.Graph.BaseRequest.ContentType">
+            <summary>
+            Gets or sets the content type for the request.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.BaseRequest.Headers">
+            <summary>
+            Gets the <see cref="T:Microsoft.Graph.HeaderOption"/> collection for the request.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.BaseRequest.Client">
+            <summary>
+            Gets the <see cref="T:Microsoft.Graph.IBaseClient"/> for handling requests.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.BaseRequest.Method">
+            <summary>
+            Gets or sets the HTTP method string for the request.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.BaseRequest.QueryOptions">
+            <summary>
+            Gets the <see cref="T:Microsoft.Graph.QueryOption"/> collection for the request.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.BaseRequest.RequestUrl">
+            <summary>
+            Gets the URL for the request, without query string.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.BaseRequest.SdkVersionHeaderPrefix">
+            <summary>
+            Gets or sets the telemetry header prefix for requests.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.BaseRequest.SendAsync(System.Object,System.Threading.CancellationToken,System.Net.Http.HttpCompletionOption)">
+            <summary>
+            Sends the request.
+            </summary>
+            <param name="serializableObject">The serializable object to send.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> for the request.</param>
+            <param name="completionOption">The <see cref="T:System.Net.Http.HttpCompletionOption"/> to pass to the <see cref="T:Microsoft.Graph.IHttpProvider"/> on send.</param>
+            <returns>The task to await.</returns>
+        </member>
+        <member name="M:Microsoft.Graph.BaseRequest.SendAsync``1(System.Object,System.Threading.CancellationToken,System.Net.Http.HttpCompletionOption)">
+            <summary>
+            Sends the request.
+            </summary>
+            <typeparam name="T">The expected response object type for deserialization.</typeparam>
+            <param name="serializableObject">The serializable object to send.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> for the request.</param>
+            <param name="completionOption">The <see cref="T:System.Net.Http.HttpCompletionOption"/> to pass to the <see cref="T:Microsoft.Graph.IHttpProvider"/> on send.</param>
+            <returns>The deserialized response object.</returns>
+        </member>
+        <member name="M:Microsoft.Graph.BaseRequest.SendMultiPartAsync``1(System.Net.Http.MultipartContent,System.Threading.CancellationToken,System.Net.Http.HttpCompletionOption)">
+            <summary>
+            Sends the multipart request.
+            </summary>
+            <typeparam name="T">The expected response object type for deserialization.</typeparam>
+            <param name="multipartContent">The multipart object to send.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> for the request.</param>
+            <param name="completionOption">The <see cref="T:System.Net.Http.HttpCompletionOption"/> to pass to the <see cref="T:Microsoft.Graph.IHttpProvider"/> on send.</param>
+            <returns>The deserialized response object.</returns>
+        </member>
+        <member name="M:Microsoft.Graph.BaseRequest.SendStreamRequestAsync(System.Object,System.Threading.CancellationToken,System.Net.Http.HttpCompletionOption)">
+            <summary>
+            Sends the request.
+            </summary>
+            <param name="serializableObject">The serializable object to send.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> for the request.</param>
+            <param name="completionOption">The <see cref="T:System.Net.Http.HttpCompletionOption"/> to pass to the <see cref="T:Microsoft.Graph.IHttpProvider"/> on send.</param>
+            <returns>The stream.</returns>
+        </member>
+        <member name="M:Microsoft.Graph.BaseRequest.SendMultiPartRequestAsync(System.Net.Http.MultipartContent,System.Threading.CancellationToken,System.Net.Http.HttpCompletionOption)">
+            <summary>
+            Sends the multipart request.
+            </summary>
+            <param name="multipartContent">The multipart object to send.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> for the request.</param>
+            <param name="completionOption">The <see cref="T:System.Net.Http.HttpCompletionOption"/> to pass to the <see cref="T:Microsoft.Graph.IHttpProvider"/> on send.</param>
+            <returns>The <see cref="T:System.Net.Http.HttpResponseMessage"/> object.</returns>
+        </member>
+        <member name="M:Microsoft.Graph.BaseRequest.SendRequestAsync(System.Object,System.Threading.CancellationToken,System.Net.Http.HttpCompletionOption)">
+            <summary>
+            Sends the request.
+            </summary>
+            <param name="serializableObject">The serializable object to send.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> for the request.</param>
+            <param name="completionOption">The <see cref="T:System.Net.Http.HttpCompletionOption"/> to pass to the <see cref="T:Microsoft.Graph.IHttpProvider"/> on send.</param>
+            <returns>The <see cref="T:System.Net.Http.HttpResponseMessage"/> object.</returns>
+        </member>
+        <member name="M:Microsoft.Graph.BaseRequest.GetHttpRequestMessage">
+            <summary>
+            Gets the <see cref="T:System.Net.Http.HttpRequestMessage"/> representation of the request.
+            </summary>
+            <returns>The <see cref="T:System.Net.Http.HttpRequestMessage"/> representation of the request.</returns>
+        </member>
+        <member name="M:Microsoft.Graph.BaseRequest.BuildQueryString">
+            <summary>
+            Builds the query string for the request from the query option collection.
+            </summary>
+            <returns>The constructed query string.</returns>
+        </member>
+        <member name="M:Microsoft.Graph.BaseRequest.AddHeadersToRequest(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Adds all of the headers from the header collection to the request.
+            </summary>
+            <param name="request">The <see cref="T:System.Net.Http.HttpRequestMessage"/> representation of the request.</param>
+        </member>
+        <member name="M:Microsoft.Graph.BaseRequest.AuthenticateRequest(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Adds the authentication header to the request.
+            </summary>
+            <param name="request">The <see cref="T:System.Net.Http.HttpRequestMessage"/> representation of the request.</param>
+            <returns>The task to await.</returns>
+        </member>
+        <member name="M:Microsoft.Graph.BaseRequest.InitializeUrl(System.String)">
+            <summary>
+            Initializes the request URL for the request, breaking it into query options and base URL.
+            </summary>
+            <param name="requestUrl">The request URL.</param>
+            <returns>The request URL minus query string.</returns>
+        </member>
+        <member name="M:Microsoft.Graph.BaseRequest.GetResponseString(System.Net.Http.HttpResponseMessage)">
+            <summary>
+            Get the response content string
+            </summary>
+            <param name="hrm">The response object</param>
+            <returns>The full response string to return</returns>
+        </member>
+        <member name="T:Microsoft.Graph.BaseRequestBuilder">
+            <summary>
+            The base request builder class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.BaseRequestBuilder.#ctor(System.String,Microsoft.Graph.IBaseClient)">
+            <summary>
+            Constructs a new <see cref="T:Microsoft.Graph.BaseRequestBuilder"/>.
+            </summary>
+            <param name="requestUrl">The URL for the built request.</param>
+            <param name="client">The <see cref="T:Microsoft.Graph.IBaseClient"/> for handling requests.</param>
+        </member>
+        <member name="P:Microsoft.Graph.BaseRequestBuilder.Client">
+            <summary>
+            Gets the <see cref="T:Microsoft.Graph.IBaseClient"/> for handling requests.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.BaseRequestBuilder.RequestUrl">
+            <summary>
+            Gets the URL for the built request, without query string.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.BaseRequestBuilder.AppendSegmentToRequestUrl(System.String)">
+            <summary>
+            Gets a URL that is the request builder's request URL with the segment appended.
+            </summary>
+            <param name="urlSegment">The segment to append to the request URL.</param>
+            <returns>A URL that is the request builder's request URL with the segment appended.</returns>
+        </member>
+        <member name="T:Microsoft.Graph.HttpProvider">
+            <summary>
+            An <see cref="T:Microsoft.Graph.IHttpProvider"/> implementation using standard .NET libraries.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.HttpProvider.#ctor(Microsoft.Graph.ISerializer)">
+            <summary>
+            Constructs a new <see cref="T:Microsoft.Graph.HttpProvider"/>.
+            </summary>
+            <param name="serializer">A serializer for serializing and deserializing JSON objects.</param>
+        </member>
+        <member name="M:Microsoft.Graph.HttpProvider.#ctor(System.Net.Http.HttpClientHandler,System.Boolean,Microsoft.Graph.ISerializer)">
+            <summary>
+            Constructs a new <see cref="T:Microsoft.Graph.HttpProvider"/>.
+            </summary>
+            <param name="httpClientHandler">An HTTP client handler to pass to the <see cref="T:System.Net.Http.HttpClient"/> for sending requests.</param>
+            <param name="disposeHandler">Whether or not to dispose the client handler on Dispose().</param>
+            <param name="serializer">A serializer for serializing and deserializing JSON objects.</param>
+            <remarks>
+                By default, HttpProvider disables automatic redirects and handles redirects to preserve authentication headers. If providing
+                an <see cref="T:System.Net.Http.HttpClientHandler"/> to the constructor and enabling automatic redirects this could cause issues with authentication
+                over the redirect.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Graph.HttpProvider.#ctor(System.Net.Http.HttpMessageHandler,System.Boolean,Microsoft.Graph.ISerializer)">
+            <summary>
+            Constructs a new <see cref="T:Microsoft.Graph.HttpProvider"/>.
+            </summary>
+            <param name="httpMessageHandler">An HTTP message handler to pass to the <see cref="T:System.Net.Http.HttpClient"/> for sending requests.</param>
+            <param name="disposeHandler">Whether or not to dispose the client handler on Dispose().</param>
+            <param name="serializer">A serializer for serializing and deserializing JSON objects.</param>
+        </member>
+        <member name="P:Microsoft.Graph.HttpProvider.CacheControlHeader">
+            <summary>
+            Gets or sets the cache control header for requests;
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.HttpProvider.OverallTimeout">
+            <summary>
+            Gets or sets the overall request timeout.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.HttpProvider.Serializer">
+            <summary>
+            Gets a serializer for serializing and deserializing JSON objects.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.HttpProvider.Dispose">
+            <summary>
+            Disposes the HttpClient and HttpClientHandler instances.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.HttpProvider.SendAsync(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Sends the request.
+            </summary>
+            <param name="request">The <see cref="T:System.Net.Http.HttpRequestMessage"/> to send.</param>
+            <returns>The <see cref="T:System.Net.Http.HttpResponseMessage"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Graph.HttpProvider.SendAsync(System.Net.Http.HttpRequestMessage,System.Net.Http.HttpCompletionOption,System.Threading.CancellationToken)">
+            <summary>
+            Sends the request.
+            </summary>
+            <param name="request">The <see cref="T:System.Net.Http.HttpRequestMessage"/> to send.</param>
+            <param name="completionOption">The <see cref="T:System.Net.Http.HttpCompletionOption"/> to pass to the <see cref="T:Microsoft.Graph.IHttpProvider"/> on send.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> for the request.</param>
+            <returns>The <see cref="T:System.Net.Http.HttpResponseMessage"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Graph.HttpProvider.ConvertErrorResponseAsync(System.Net.Http.HttpResponseMessage)">
+            <summary>
+            Converts the <see cref="T:System.Net.Http.HttpRequestException"/> into an <see cref="T:Microsoft.Graph.ErrorResponse"/> object;
+            </summary>
+            <param name="response">The <see cref="T:System.Net.Http.HttpResponseMessage"/> to convert.</param>
+            <returns>The <see cref="T:Microsoft.Graph.ErrorResponse"/> object.</returns>
+        </member>
+        <member name="T:Microsoft.Graph.IAsyncMonitor`1">
+            <summary>
+            Monitor for async operations to the Graph service on the client.
+            </summary>
+            <typeparam name="T">The object type to return.</typeparam>
+        </member>
+        <member name="M:Microsoft.Graph.IAsyncMonitor`1.PollForOperationCompletionAsync(System.IProgress{Microsoft.Graph.AsyncOperationStatus},System.Threading.CancellationToken)">
+            <summary>
+            Poll to check for completion of an async call to the Graph service.
+            </summary>
+            <param name="progress">The progress status.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The operation task.</returns>
+        </member>
+        <member name="T:Microsoft.Graph.IBaseClient">
+            <summary>
+            Interface for the base client.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.IBaseClient.AuthenticationProvider">
+            <summary>
+            Gets the <see cref="T:Microsoft.Graph.IAuthenticationProvider"/> for authenticating HTTP requests.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.IBaseClient.BaseUrl">
+            <summary>
+            Gets the base URL for requests of the client.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.IBaseClient.HttpProvider">
+            <summary>
+            Gets the <see cref="T:Microsoft.Graph.IHttpProvider"/> for sending HTTP requests.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Graph.IBaseRequest">
+            <summary>
+            The base request interface.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.IBaseRequest.ContentType">
+            <summary>
+            Gets or sets the content type for the request.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.IBaseRequest.Headers">
+            <summary>
+            Gets the <see cref="T:Microsoft.Graph.HeaderOption"/> collection for the request.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.IBaseRequest.Client">
+            <summary>
+            Gets the <see cref="T:Microsoft.Graph.IBaseClient"/> for handling requests.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.IBaseRequest.Method">
+            <summary>
+            Gets or sets the HTTP method string for the request.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.IBaseRequest.RequestUrl">
+            <summary>
+            Gets the URL for the request, without query string.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.IBaseRequest.QueryOptions">
+            <summary>
+            Gets the <see cref="T:Microsoft.Graph.QueryOption"/> collection for the request.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.IBaseRequest.GetHttpRequestMessage">
+            <summary>
+            Gets the <see cref="T:System.Net.Http.HttpRequestMessage"/> representation of the request.
+            </summary>
+            <returns>The <see cref="T:System.Net.Http.HttpRequestMessage"/> representation of the request.</returns>
+        </member>
+        <member name="T:Microsoft.Graph.IBaseRequestBuilder">
+            <summary>
+            The base request builder interface.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.IBaseRequestBuilder.Client">
+            <summary>
+            Gets the <see cref="T:Microsoft.Graph.IBaseClient"/> for handling requests.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.IBaseRequestBuilder.RequestUrl">
+            <summary>
+            Gets the URL for the built request, without query string.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.IBaseRequestBuilder.AppendSegmentToRequestUrl(System.String)">
+            <summary>
+            Gets a URL that is the request builder's request URL with the segment appended.
+            </summary>
+            <param name="urlSegment">The segment to append to the request URL.</param>
+            <returns>A URL that is the request builder's request URL with the segment appended.</returns>
+        </member>
+        <member name="T:Microsoft.Graph.IHttpProvider">
+            <summary>
+            Interface for an HTTP provider to send requests.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.IHttpProvider.Serializer">
+            <summary>
+            Gets a serializer for serializing and deserializing JSON objects.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.IHttpProvider.OverallTimeout">
+            <summary>
+            Gets or sets the timeout interval. The default value is 100 seconds.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.IHttpProvider.SendAsync(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Sends the request.
+            </summary>
+            <param name="request">The <see cref="T:System.Net.Http.HttpRequestMessage"/> to send.</param>
+            <returns>The <see cref="T:System.Net.Http.HttpResponseMessage"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Graph.IHttpProvider.SendAsync(System.Net.Http.HttpRequestMessage,System.Net.Http.HttpCompletionOption,System.Threading.CancellationToken)">
+            <summary>
+            Sends the request.
+            </summary>
+            <param name="request">The <see cref="T:System.Net.Http.HttpRequestMessage"/> to send.</param>
+            <param name="completionOption">The <see cref="T:System.Net.Http.HttpCompletionOption"/> to pass to the <see cref="T:Microsoft.Graph.IHttpProvider"/> on send.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> for the request.</param>
+            <returns>The <see cref="T:System.Net.Http.HttpResponseMessage"/>.</returns>
+        </member>
+        <member name="T:Microsoft.Graph.HeaderOption">
+            <summary>
+            A key value pair to be added to the request headers.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.HeaderOption.#ctor(System.String,System.String)">
+            <summary>
+            Create a header option.
+            </summary>
+            <param name="name">The name, or key, of the header option.</param>
+            <param name="value">The value for the header option.</param>
+        </member>
+        <member name="T:Microsoft.Graph.Option">
+            <summary>
+            A key value pair to be added to the request.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.Option.#ctor(System.String,System.String)">
+            <summary>
+            Create a new option.
+            </summary>
+            <param name="name">The name of the option.</param>
+            <param name="value">The value of the option.</param>
+        </member>
+        <member name="P:Microsoft.Graph.Option.Name">
+            <summary>
+            The name, or key, of the option.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Graph.Option.Value">
+            <summary>
+            The value of the option.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Graph.QueryOption">
+            <summary>
+            A query option to be added to the request.
+            https://developer.microsoft.com/en-us/graph/docs/concepts/query_parameters
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.QueryOption.#ctor(System.String,System.String)">
+            <summary>
+            Create a query option.
+            </summary>
+            <param name="name">The name of the query option, or parameter.</param>
+            <param name="value">The value of the query option.</param>
+        </member>
+        <member name="T:Microsoft.Graph.DateConverter">
+            <summary>
+            The Date Converter.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.DateConverter.CanConvert(System.Type)">
+            <summary>
+            Check if the given object can be converted into a Date.
+            </summary>
+            <param name="objectType">The type of the object.</param>
+            <returns>True if the object is a Date type.</returns>
+        </member>
+        <member name="M:Microsoft.Graph.DateConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Converts the JSON object into a Date object
+            </summary>
+            <param name="reader">The <see cref="T:Newtonsoft.Json.JsonWriter"/> to read from.</param>
+            <param name="objectType">The object type.</param>
+            <param name="existingValue">The existing value.</param>
+            <param name="serializer">The serializer to convert the object with.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Graph.DateConverter.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Writes the JSON representation of the object.
+            </summary>
+            <param name="writer">The <see cref="T:Newtonsoft.Json.JsonWriter"/> to write to.</param>
+            <param name="value">The value.</param>
+            <param name="serializer">The calling serializer.</param>
+        </member>
+        <member name="T:Microsoft.Graph.DerivedTypeConverter">
+            <summary>
+            Handles resolving interfaces to the correct derived class during serialization/deserialization.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.DerivedTypeConverter.#ctor">
+            <summary>
+            Constructs a new DerivedTypeConverter.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.DerivedTypeConverter.CanConvert(System.Type)">
+            <summary>
+            Checks if the given object can be converted. In this instance, all object can be converted.
+            </summary>
+            <param name="objectType">The type of the object to convert.</param>
+            <returns>True</returns>
+        </member>
+        <member name="P:Microsoft.Graph.DerivedTypeConverter.CanWrite">
+            <summary>
+            Checks if the entity supports write. Currently no derived types support write.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.DerivedTypeConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Deserializes the object to the correct type.
+            </summary>
+            <param name="reader">The <see cref="T:Newtonsoft.Json.JsonReader"/> to read from.</param>
+            <param name="objectType">The interface type.</param>
+            <param name="existingValue">The existing value of the object being read.</param>
+            <param name="serializer">The <see cref="T:Newtonsoft.Json.JsonSerializer"/> for deserialization.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Graph.DerivedTypeConverter.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Not yet implemented
+            </summary>
+            <param name="writer"></param>
+            <param name="value"></param>
+            <param name="serializer"></param>
+        </member>
+        <member name="T:Microsoft.Graph.DurationConverter">
+            <summary>
+            Converter for serializing and deserializing Duration objects.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.DurationConverter.CanConvert(System.Type)">
+            <summary>
+            Checks if the given object can be converted into a Duration object.
+            </summary>
+            <param name="objectType">The object type.</param>
+            <returns>True if the object is of type Duration.</returns>
+        </member>
+        <member name="M:Microsoft.Graph.DurationConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Deserialize the edm.duration into an Microsoft.Graph.Duration object.
+            </summary>
+            <returns>A Microsoft.Graph.Duration object.</returns>
+        </member>
+        <member name="M:Microsoft.Graph.DurationConverter.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Serializes the edm.duration representation of the Microsoft.Graph.Duration object.
+            </summary>
+            <param name="writer">The <see cref="T:Newtonsoft.Json.JsonWriter"/> to write to.</param>
+            <param name="value">The value.</param>
+            <param name="serializer">The calling serializer.</param>
+        </member>
+        <member name="T:Microsoft.Graph.EnumConverter">
+            <summary>
+            Handles resolving interfaces to the correct derived class during serialization/deserialization.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.EnumConverter.#ctor">
+            <summary>
+            Constructs a new EnumConverter.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.EnumConverter.CanConvert(System.Type)">
+            <summary>
+            Checks if the given type can be converted into an enum. All types
+            can be converted.
+            </summary>
+            <param name="objectType">The object type.</param>
+            <returns>True.</returns>
+        </member>
+        <member name="P:Microsoft.Graph.EnumConverter.CanWrite">
+            <summary>
+            Whether the object can be serialized to a request body.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.EnumConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Deserializes the object to the correct type.
+            </summary>
+            <param name="reader">The <see cref="T:Newtonsoft.Json.JsonReader"/> to read from.</param>
+            <param name="objectType">The interface type.</param>
+            <param name="existingValue">The existing value of the object being read.</param>
+            <param name="serializer">The <see cref="T:Newtonsoft.Json.JsonSerializer"/> for deserialization.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Graph.EnumConverter.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Serializes the object into a JSON string.
+            </summary>
+            <param name="writer">The  <see cref="T:Newtonsoft.Json.JsonWriter"/> to write with.</param>
+            <param name="value">The object to write.</param>
+            <param name="serializer">The <see cref="T:Newtonsoft.Json.JsonSerializer"/> for serialization.</param>
+        </member>
+        <member name="T:Microsoft.Graph.InterfaceConverter`1">
+            <summary>
+            Handles resolving interfaces to the correct concrete class during serialization/deserialization.
+            </summary>
+            <typeparam name="T">The concrete instance type.</typeparam>
+        </member>
+        <member name="M:Microsoft.Graph.InterfaceConverter`1.Create(System.Type)">
+            <summary>
+            Create a new object of type T.
+            </summary>
+            <param name="objectType">The type of object to create.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.Graph.ISerializer">
+            <summary>
+            An interface for serializing and deserializing JSON objects.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.ISerializer.DeserializeObject``1(System.IO.Stream)">
+            <summary>
+            Deserializes the stream to an object of the specified type.
+            </summary>
+            <typeparam name="T">The deserialization type.</typeparam>
+            <param name="stream">The stream to deserialize.</param>
+            <returns>The deserialized object.</returns>
+        </member>
+        <member name="M:Microsoft.Graph.ISerializer.DeserializeObject``1(System.String)">
+            <summary>
+            Deserializes the JSON string to an object of the specified type.
+            </summary>
+            <typeparam name="T">The deserialization type.</typeparam>
+            <param name="inputString">The JSON string to deserialize.</param>
+            <returns>The deserialized object.</returns>
+        </member>
+        <member name="M:Microsoft.Graph.ISerializer.SerializeObject(System.Object)">
+            <summary>
+            Serializes the specified object into a JSON string.
+            </summary>
+            <param name="serializeableObject">The object to serialize.</param>
+            <returns>The JSON string.</returns>
+        </member>
+        <member name="T:Microsoft.Graph.Serializer">
+            <summary>
+            An <see cref="T:Microsoft.Graph.ISerializer"/> implementation using the JSON.NET serializer.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.Serializer.#ctor">
+            <summary>
+            Constructor for the serializer with defaults for the JsonSerializer settings.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.Serializer.#ctor(Newtonsoft.Json.JsonSerializerSettings)">
+            <summary>
+            Constructor for the serializer.
+            </summary>
+            <param name="jsonSerializerSettings">The serializer settings to apply to the serializer.</param>
+        </member>
+        <member name="M:Microsoft.Graph.Serializer.DeserializeObject``1(System.IO.Stream)">
+            <summary>
+            Deserializes the stream to an object of the specified type.
+            </summary>
+            <typeparam name="T">The deserialization type.</typeparam>
+            <param name="stream">The stream to deserialize.</param>
+            <returns>The deserialized object.</returns>
+        </member>
+        <member name="M:Microsoft.Graph.Serializer.DeserializeObject``1(System.String)">
+            <summary>
+            Deserializes the JSON string to an object of the specified type.
+            </summary>
+            <typeparam name="T">The deserialization type.</typeparam>
+            <param name="inputString">The JSON string to deserialize.</param>
+            <returns>The deserialized object.</returns>
+        </member>
+        <member name="M:Microsoft.Graph.Serializer.SerializeObject(System.Object)">
+            <summary>
+            Serializes the specified object into a JSON string.
+            </summary>
+            <param name="serializeableObject">The object to serialize.</param>
+            <returns>The JSON string.</returns>
+        </member>
+        <member name="T:Microsoft.Graph.TimeOfDayConverter">
+            <summary>
+            Handles serialization and deserialization for TimeOfDay.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Graph.TimeOfDayConverter.CanConvert(System.Type)">
+            <summary>
+            Checks if the given type can be converted to a TimeOfDay.
+            </summary>
+            <param name="objectType">The object type.</param>
+            <returns>True if the object is type match of TimeOfDay.</returns>
+        </member>
+        <member name="M:Microsoft.Graph.TimeOfDayConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Deserialize the JSON data into a TimeOfDay object.
+            </summary>
+            <param name="reader">The <see cref="T:Newtonsoft.Json.JsonReader"/> to read from.</param>
+            <param name="objectType">The object type.</param>
+            <param name="existingValue">The original value.</param>
+            <param name="serializer">The serializer to deserialize the object with.</param>
+            <returns>A TimeOfDay object.</returns>
+        </member>
+        <member name="M:Microsoft.Graph.TimeOfDayConverter.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Writes the JSON representation of the object.
+            </summary>
+            <param name="writer">The <see cref="T:Newtonsoft.Json.JsonWriter"/> to write to.</param>
+            <param name="value">The value.</param>
+            <param name="serializer">The calling serializer.</param>
+        </member>
+    </members>
+</doc>
