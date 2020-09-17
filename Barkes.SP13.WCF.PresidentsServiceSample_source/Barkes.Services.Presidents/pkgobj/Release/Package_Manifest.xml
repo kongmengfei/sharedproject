@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Solution xmlns="http://schemas.microsoft.com/sharepoint/" SolutionId="1fdbe9b8-01cb-40f8-aa4d-1f2362b68768" SharePointProductVersion="16.0">
+  <Assemblies>
+    <Assembly Location="Barkes.Services.Presidents.dll" DeploymentTarget="GlobalAssemblyCache" />
+  </Assemblies>
+  <RootFiles>
+    <RootFile Location="ISAPI\BarkesServices\PresidentsService.svc" />
+    <RootFile Location="ISAPI\MyTestService\AuditService.svc" />
+  </RootFiles>
+</Solution>

@@ -1,0 +1,9 @@
+C:\Users\Administrator.CONTOSO2016\Downloads\Barkes.SP13.WCF.PresidentsServiceSample_source\Barkes.Services.Presidents.UnitTests\bin\Debug\Barkes.Services.Presidents.UnitTests.dll
+C:\Users\Administrator.CONTOSO2016\Downloads\Barkes.SP13.WCF.PresidentsServiceSample_source\Barkes.Services.Presidents.UnitTests\bin\Debug\Barkes.Services.Presidents.UnitTests.pdb
+C:\Users\Administrator.CONTOSO2016\Downloads\Barkes.SP13.WCF.PresidentsServiceSample_source\Barkes.Services.Presidents.UnitTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Administrator.CONTOSO2016\Downloads\Barkes.SP13.WCF.PresidentsServiceSample_source\Barkes.Services.Presidents.UnitTests\bin\Debug\zh-Hans\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+C:\Users\Administrator.CONTOSO2016\Downloads\Barkes.SP13.WCF.PresidentsServiceSample_source\Barkes.Services.Presidents.UnitTests\obj\Debug\Barkes.Services.Presidents.UnitTests.csprojAssemblyReference.cache
+C:\Users\Administrator.CONTOSO2016\Downloads\Barkes.SP13.WCF.PresidentsServiceSample_source\Barkes.Services.Presidents.UnitTests\obj\Debug\Barkes.Services.Presidents.UnitTests.csproj.CoreCompileInputs.cache
+C:\Users\Administrator.CONTOSO2016\Downloads\Barkes.SP13.WCF.PresidentsServiceSample_source\Barkes.Services.Presidents.UnitTests\obj\Debug\Barkes.Services.Presidents.UnitTests.csproj.CopyComplete
+C:\Users\Administrator.CONTOSO2016\Downloads\Barkes.SP13.WCF.PresidentsServiceSample_source\Barkes.Services.Presidents.UnitTests\obj\Debug\Barkes.Services.Presidents.UnitTests.dll
+C:\Users\Administrator.CONTOSO2016\Downloads\Barkes.SP13.WCF.PresidentsServiceSample_source\Barkes.Services.Presidents.UnitTests\obj\Debug\Barkes.Services.Presidents.UnitTests.pdb

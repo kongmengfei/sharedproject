@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="1fdbe9b8-01cb-40f8-aa4d-1f2362b68768" solutionId="1fdbe9b8-01cb-40f8-aa4d-1f2362b68768" resetWebServer="false" sharePointProductVersion="16.0" name="Barkes.Services.Presidents" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <projectItems>
+    <projectItemReference itemId="f0c89cf5-e7f8-4e3b-946a-3156b800b7cf" />
+  </projectItems>
+</package>

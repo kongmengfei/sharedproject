@@ -1,0 +1,65 @@
+<!-- 
+    This is a quick sample to demonstrate calling a custom SharePoint-hosted WCF service from a
+    Script Editor Web Part using simple HTML, JavaScript and JQuery.
+
+    1. Ensure the Presidents WCF service is up and running in SharePoint.
+    2. Add JQuery to an appropriate document library in SharePoint (SiteAssets works well).
+    3. Add a new SharePoint page (or edit an existing page).
+    4. Add a Script Editor Web Part to the page.
+    5. Edit the web part and click EDIT SNIPPET.
+    6. Paste all of the code from this file into the Embed dialog and click Insert.
+    7. Save the page.
+
+    ** Be sure to update the external JQuery script url to your server where is says **
+                           INSERT_YOUR_SERVER_NAME_HERE
+-->
+
+<script src="jquery-1.10.2.min.js"></script>
+
+<h2>SharePoint 2013: Consume a custom WCF REST service hosted in SharePoint 2013.</h2>
+<h3>This is a quick sample to demonstrate calling a custom SharePoint-hosted WCF REST service from a
+    Script Editor Web Part using simple HTML, JavaScript and JQuery. For more information, see 
+    <a href=http://jbarkes.blogspot.com>jbarkes.blogspot.com</a>
+</h3>
+
+<div>
+    <br />
+    <p id="message">Loading presidents...</p>
+</div>
+
+<div id="resultsPanel"></div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        getPresidentsData();
+    });
+  
+function getPresidentsData() {
+    var serviceUri = _spPageContextInfo.webAbsoluteUrl + "/_vti_bin/BarkesServices/PresidentsService.svc/GetAllPresidents";
+    $.ajax({
+        type: "GET",
+        contentType: "application/json",
+        url: serviceUri,
+        dataType: "json",
+        success:
+            function (response) {
+                showPresidentsList(response);
+                $('#message').html("<a href=" + serviceUri + ">" + serviceUri + "</a>");
+            },
+        error:
+            function (err) {
+                alert(err);
+            }
+    });
+}
+
+function showPresidentsList(presidentsData) {
+    $.each(presidentsData, function () {
+        $('#resultsPanel').append($(this)[0].Id + ' - ');
+        $('#resultsPanel').append($(this)[0].FirstName + ' ');
+        $('#resultsPanel').append($(this)[0].LastName + ' (');
+        $('#resultsPanel').append($(this)[0].EmailAddress + ')');
+        $('#resultsPanel').append('<br><br>');
+    });
+}
+</script>
