@@ -21,8 +21,7 @@
             docTempUrl = valuesBag.TargetContentType.get_documentTemplateUrl();
 
             valuesBag.clientContext.executeQueryAsync(function () {
-                docTempUrl;
-
+               
                 var req = new XMLHttpRequest();
                 req.open("GET", docTempUrl, true);
                 req.responseType = "blob";
