@@ -1,0 +1,98 @@
+<html lang="en">
+
+<head>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+
+    <style>
+        #collapseExample {
+            margin-top: 10px;
+        }
+        
+    </style>
+</head>
+
+<body>
+
+    <button type="button" class="btn btn-danger float-right" id="ShowButton" data-toggle="collapse"
+        data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Click</button>
+
+    <br /><br />
+
+    <div class="container collapse" id="collapseExample">
+        <div class="row row-cols-3 no-gutters">
+            
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var valuesBag = valuesBag || {};
+        $(document).ready(function () {
+            SP.SOD.executeFunc('sp.js', 'SP.ClientContext', registerClick);
+        });
+
+        function registerClick() {
+            GetAnno();
+        }
+
+        function GetAnno() {
+            valuesBag.clientContext = new SP.ClientContext();
+
+            oWeb = valuesBag.clientContext.get_web();
+            oList = oWeb.get_lists().getByTitle('myannno');
+
+            valuesBag.oListItems = oList.getItems(SP.CamlQuery.createAllItemsQuery());
+            // Load list items to Client Context
+            valuesBag.clientContext.load(valuesBag.oListItems);
+
+            // Execute the query to the server.
+            valuesBag.clientContext.executeQueryAsync(onsuccess, onfailed);
+        }
+
+        function onsuccess() {
+
+            // Iterate through Enumerator
+            var oEnumerator = valuesBag.oListItems.getEnumerator();
+
+            while (oEnumerator.moveNext()) {
+                // get_item("ColumnName")
+                var oItemTitle = oEnumerator.get_current().get_item('Title');
+                var oItemImage = oEnumerator.get_current().get_item('image');
+                var oItemBody = oEnumerator.get_current().get_item('Body');
+                var oItemCreated = oEnumerator.get_current().get_item('Created_x0020_Date');
+
+                let divstr = `<div class="col card">
+                <img src="${oItemImage.get_url()}"
+                    class="card-img-top" alt=${oItemImage.get_description()}>
+                <div class="card-body">
+                    <h5 class="card-title">${oItemTitle}</h5>
+                    <p class="card-text"><small class="text-muted">${oItemCreated}</small></p>
+                    <p class="card-text">${oItemBody}</p>                    
+                </div>
+            </div>`;
+
+                $("div.row-cols-3").append(divstr);
+
+                console.log(oItemBody);
+                console.log(oItemImage);
+            }
+
+        }
+
+        function onfailed(sender, args) {
+            console.log('Failed' + args.get_message() + '\n' + args.get_stackTrace());
+        }
+
+
+    </script>
+
+</body>
+
+</html>
