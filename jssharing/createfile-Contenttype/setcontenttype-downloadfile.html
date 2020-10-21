@@ -21,7 +21,7 @@
             docTempUrl = valuesBag.TargetContentType.get_documentTemplateUrl();
 
             valuesBag.clientContext.executeQueryAsync(function () {
-               
+
                 var req = new XMLHttpRequest();
                 req.open("GET", docTempUrl, true);
                 req.responseType = "blob";
@@ -30,9 +30,23 @@
                     var blob = req.response;
                     console.log(blob);
 
+                    //download file
+                    var link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = 'templatedownload.dotx';
+
+                    document.body.appendChild(link);
+
+                    link.click();
+
+                    document.body.removeChild(link);
+
+                    // end !!  Above is about how to download the template file   
+                    
+
                     let condata = new Date().getMilliseconds();
 
-                    let completeUrl = _spPageContextInfo.webAbsoluteUrl + `/_api/web/GetFolderByServerRelativeUrl('/sites/testprivate/mytestdoclib')/Files/add(url='test00${condata}.docx',overwrite=true)`;
+                    let completeUrl = _spPageContextInfo.webAbsoluteUrl + `/_api/web/GetFolderByServerRelativeUrl('/sites/sbdev/mytestdoclib')/Files/add(url='test00${condata}.docx',overwrite=true)`;
 
                     $.ajax({
                         url: completeUrl,
@@ -45,7 +59,7 @@
                             "X-RequestDigest": $("#__REQUESTDIGEST").val(),
                             "content-length": blob.byteLength
                         },
-                        complete: function (res) {
+                        success: function (res) {
                             alert("upload complete.");
                             //console.log(data.responseJSON.d.ServerRelativeUrl);
                         },
@@ -53,7 +67,6 @@
                             alert('failed');
                         }
                     });
-
 
                 };
                 req.send();
