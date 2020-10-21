@@ -1,0 +1,127 @@
+<html>
+
+<head>
+    <script language="javascript" type="text/javascript">
+
+        var valuesBag = valuesBag || {};
+
+        $(document).ready(function () {
+            SP.SOD.executeFunc('sp.js', 'SP.ClientContext', registerClick);
+        });
+
+        function registerClick() {
+            //Register File Upload Click Event   
+            $("#addFileButton").click(CreateFileFromTem);
+        }
+
+        function FileCreation() {
+            console.log(valuesBag);
+
+            docTempName = valuesBag.TargetContentType.get_documentTemplate();
+            docTempUrl = valuesBag.TargetContentType.get_documentTemplateUrl();
+
+            valuesBag.clientContext.executeQueryAsync(function () {
+
+                var req = new XMLHttpRequest();
+                req.open("GET", docTempUrl, true);
+                req.responseType = "blob";
+
+                req.onload = function (event) {
+                    var blob = req.response;
+                    console.log(blob);
+
+                    //download file
+                    var link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = 'templatedownload.dotx';
+
+                    document.body.appendChild(link);
+
+                    link.click();
+
+                    document.body.removeChild(link);
+
+                    // end !!  Above is about how to download the template file   
+                    
+
+                    let condata = new Date().getMilliseconds();
+
+                    let completeUrl = _spPageContextInfo.webAbsoluteUrl + `/_api/web/GetFolderByServerRelativeUrl('/sites/sbdev/mytestdoclib')/Files/add(url='test00${condata}.docx',overwrite=true)`;
+
+                    $.ajax({
+                        url: completeUrl,
+                        type: "POST",
+                        data: blob,
+                        async: false,
+                        processData: false,
+                        headers: {
+                            "accept": "application/json;odata=verbose",
+                            "X-RequestDigest": $("#__REQUESTDIGEST").val(),
+                            "content-length": blob.byteLength
+                        },
+                        success: function (res) {
+                            alert("upload complete.");
+                            //console.log(data.responseJSON.d.ServerRelativeUrl);
+                        },
+                        error: function (err) {
+                            alert('failed');
+                        }
+                    });
+
+                };
+                req.send();
+            }, errorHandler);
+
+            function errorHandler(sender, args) {
+                console.log('error message - ' + args.get_message() + ' . Stack Trace - ' + args.get_stackTrace());
+            }
+
+        }
+
+        function CreateFileFromTem(arrayBuffer, fileName) {
+            //Get Client Context,Web and List object.  
+            valuesBag.clientContext = new SP.ClientContext();
+
+            valuesBag.oWeb = valuesBag.clientContext.get_web();
+            valuesBag.oList = valuesBag.oWeb.get_lists().getByTitle('mytestdoclib');
+
+            // Get ContentType
+            if (valuesBag.TargetContentType == null) {
+                valuesBag.contentTypeCollection = valuesBag.oList.get_contentTypes();
+                valuesBag.clientContext.load(valuesBag.contentTypeCollection);
+                valuesBag.clientContext.executeQueryAsync(GetContentTypesSuccess, QueryFailure);
+            } else {
+                FileCreation();
+            }
+
+        }
+
+        function GetContentTypesSuccess(sender, args) {
+            var contentTypeEnumerator = valuesBag.contentTypeCollection.getEnumerator();
+            while (contentTypeEnumerator.moveNext()) {
+                var content = contentTypeEnumerator.get_current();
+                if (content.get_name() == 'CTName') {
+                    valuesBag.TargetContentType = content;
+                    FileCreation();
+                }
+            }
+        }
+
+
+        function QueryFailure(sender, args) {
+            console.log('Request failed with error message - ' + args.get_message() + ' . Stack Trace - ' + args.get_stackTrace());
+            alert("Request failed with error message - " + args.get_message() + " . Stack Trace - " + args.get_stackTrace());
+        }
+
+    </script>
+</head>
+
+
+
+<body>
+    <input id="addFileButton" type="button" value="Upload" />
+</body>
+
+
+
+<html>
