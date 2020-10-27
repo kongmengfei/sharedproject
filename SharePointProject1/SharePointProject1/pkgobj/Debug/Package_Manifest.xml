@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Solution xmlns="http://schemas.microsoft.com/sharepoint/" SolutionId="7ee93eba-2058-4a2c-9523-e394314947f8" SharePointProductVersion="19.0">
+  <TemplateFiles>
+    <TemplateFile Location="Layouts\SharePointProject1\ApplicationPage1.aspx" />
+  </TemplateFiles>
+  <FeatureManifests>
+    <FeatureManifest Location="SharePointProject1_Feature1\Feature.xml" />
+  </FeatureManifests>
+</Solution>

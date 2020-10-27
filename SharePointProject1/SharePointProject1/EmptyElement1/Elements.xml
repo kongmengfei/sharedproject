@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+
+	<CustomActionGroup
+		Description = "fffffffff"
+		Id = "PS.SiteOwnerReports"
+		Location = "Microsoft.SharePoint.SiteSettings"
+		Sequence = "10000"
+		Title = "Test permissions">
+	</CustomActionGroup>
+
+
+	<CustomAction
+		GroupId ="PS.SiteOwnerReports"
+        Id="ViewAllPermissions.SiteSettings"
+		Location="Microsoft.SharePoint.SiteSettings"
+		Sequence="10001"
+		Title = "FullMask-False"
+		RequireSiteAdministrator="False"
+		Rights="FullMask"
+    >
+		<!-- 
+    Update the Url below to the page you want the custom action to use.
+    Start the URL with the token ~remoteAppUrl if the page is in the
+    associated web project, use ~appWebUrl if page is in the add-in project.
+    -->
+		<UrlAction Url="~site/_layouts/SharePointProject1/ApplicationPage1.aspx" />
+	</CustomAction>
+
+	<CustomAction
+		GroupId ="PS.SiteOwnerReports"
+        Id="ViewAllPermissions.SiteSettings"
+		Location="Microsoft.SharePoint.SiteSettings"
+		Sequence="10001"
+		Title = "FullMask-True"
+		RequireSiteAdministrator="True"
+		Rights="FullMask"
+    >
+		<!-- 
+    Update the Url below to the page you want the custom action to use.
+    Start the URL with the token ~remoteAppUrl if the page is in the
+    associated web project, use ~appWebUrl if page is in the add-in project.
+    -->
+		<UrlAction Url="~site/_layouts/SharePointProject1/ApplicationPage1.aspx" />
+	</CustomAction>
+
+
+
+	<CustomAction
+		GroupId ="PS.SiteOwnerReports"
+        Id="ViewAllPermissions.SiteSettings"
+		Location="Microsoft.SharePoint.SiteSettings"
+		Sequence="10001"
+		Title = "ManageWeb-False"
+		RequireSiteAdministrator="False"
+		Rights="ManageWeb"
+    >
+		<!-- 
+    Update the Url below to the page you want the custom action to use.
+    Start the URL with the token ~remoteAppUrl if the page is in the
+    associated web project, use ~appWebUrl if page is in the add-in project.
+    -->
+		<UrlAction Url="~site/_layouts/SharePointProject1/ApplicationPage1.aspx" />
+	</CustomAction>
+
+	<CustomAction
+		GroupId ="PS.SiteOwnerReports"
+        Id="ViewAllPermissions.SiteSettings"
+		Location="Microsoft.SharePoint.SiteSettings"
+		Sequence="10001"
+		Title = "ManageWeb-True"
+		RequireSiteAdministrator="True"
+		Rights="ManageWeb"
+    >
+		<!-- 
+    Update the Url below to the page you want the custom action to use.
+    Start the URL with the token ~remoteAppUrl if the page is in the
+    associated web project, use ~appWebUrl if page is in the add-in project.
+    -->
+		<UrlAction Url="~site/_layouts/SharePointProject1/ApplicationPage1.aspx" />
+	</CustomAction>
+
+</Elements>
