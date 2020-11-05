@@ -13,9 +13,9 @@ namespace TeamifySharePointClassicSite.Timezone
     {
         static void Main(string[] args)
         {
-            var siteurl = "https://isvdevchat.sharepoint.com/sites/sbdev";
-            var pwd = "dlmm=920625m";
-            var username = "admin@ISVDevChat.onmicrosoft.com";
+            var siteurl = "https://abc.sharepoint.com/sites/sbdev";
+            var pwd = "xxxxxxx";
+            var username = "admin@abc.onmicrosoft.com";
 
             var authManager = new AuthenticationManager();
             ClientContext context = authManager.GetSharePointOnlineAuthenticatedContextTenant(siteurl, username, pwd);
