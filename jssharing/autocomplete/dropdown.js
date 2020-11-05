@@ -1,11 +1,22 @@
-/* Created from Chrome SP Editor */
+############  HTML part ###########
 
+<label for="ctl00_DropDownChoice">Choose a item:</label>
+
+<select name="items" id="ctl00_DropDownChoice">
+  <option value="_select">_select</option>  
+</select>
+
+############  HTML part ###########
+
+
+// Cache Data
 var items = items || {};
 
 $(function () {
     Employees();
 });
 
+// only get 'ID,Title,num'  fields. 
 function Employees() {
     var listName = "kkkk";
 
@@ -19,11 +30,9 @@ function Employees() {
 }
 
 function _success(data, status) {
-
-    console.log(data);
     console.log(status);
 
-    items = data.d.results;
+    items = data.d.results;   // Store the result in cache
     items.forEach(item => {
         console.log(item);
         $("#ctl00_DropDownChoice").append(`<option value='${item["ID"]}'>${item["Title"]}</option>`);
@@ -44,4 +53,3 @@ function _success(data, status) {
 function _error(xhr, status, error) {
     alert("Error occured. Please try again." + status + error);
 }
-
