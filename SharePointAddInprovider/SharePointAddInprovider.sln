@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30611.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePointAddInprovider", "SharePointAddInprovider\SharePointAddInprovider.csproj", "{3C66F412-AB7B-4BCA-956E-E4C76F45B62C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePointAddInproviderWeb", "SharePointAddInproviderWeb\SharePointAddInproviderWeb.csproj", "{B9448E98-FB6C-462A-A4E5-5BE6525004E1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3C66F412-AB7B-4BCA-956E-E4C76F45B62C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C66F412-AB7B-4BCA-956E-E4C76F45B62C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C66F412-AB7B-4BCA-956E-E4C76F45B62C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{3C66F412-AB7B-4BCA-956E-E4C76F45B62C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C66F412-AB7B-4BCA-956E-E4C76F45B62C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C66F412-AB7B-4BCA-956E-E4C76F45B62C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{B9448E98-FB6C-462A-A4E5-5BE6525004E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9448E98-FB6C-462A-A4E5-5BE6525004E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9448E98-FB6C-462A-A4E5-5BE6525004E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9448E98-FB6C-462A-A4E5-5BE6525004E1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7CBEB76F-4D02-40EF-8835-778F63EFF9F5}
+	EndGlobalSection
+EndGlobal

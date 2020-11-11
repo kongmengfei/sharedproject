@@ -1,0 +1,5 @@
+D:\vs-repos\SharePointAddInprovider\SharePointAddInprovider\bin\Debug\SharePointAddInprovider.pdb
+D:\vs-repos\SharePointAddInprovider\SharePointAddInprovider\obj\Debug\SharePointAddInprovider.csprojAssemblyReference.cache
+D:\vs-repos\SharePointAddInprovider\SharePointAddInprovider\obj\Debug\SharePointAddInprovider.csproj.CoreCompileInputs.cache
+D:\vs-repos\SharePointAddInprovider\SharePointAddInprovider\obj\Debug\SharePointAddInprovider.dll
+D:\vs-repos\SharePointAddInprovider\SharePointAddInprovider\obj\Debug\SharePointAddInprovider.pdb

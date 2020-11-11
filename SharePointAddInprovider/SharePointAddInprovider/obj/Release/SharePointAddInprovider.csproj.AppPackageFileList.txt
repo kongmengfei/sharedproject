@@ -1,0 +1,1 @@
+D:\vs-repos\SharePointAddInprovider\SharePointAddInprovider\bin\Release\app.publish\1.0.2.2\SharePointAddInprovider.app

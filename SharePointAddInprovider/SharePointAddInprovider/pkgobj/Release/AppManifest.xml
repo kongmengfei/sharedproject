@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Published:70EDFC97-B41D-43C5-B751-7C00AD999804-->
+<!--Created:cb85b80c-f585-40ff-8bfc-12ff4d0e34a9-->
+<App xmlns="http://schemas.microsoft.com/sharepoint/2012/app/manifest" Name="SharePointAddInprovider" ProductID="{877f7e33-abb8-43c4-87b5-8c432b760f63}" Version="1.0.2.2" SharePointMinVersion="16.0.0.0">
+  <Properties>
+    <Title>SharePointAddInprovider</Title>
+    <StartPage>https://sharepointaddinproviderweb.azurewebsites.net/Pages/Default.aspx?{StandardTokens}</StartPage>
+  </Properties>
+  <AppPrincipal>
+    <RemoteWebApplication ClientId="8123b483-f18a-4df8-aad7-39d1f084940a" />
+  </AppPrincipal>
+  <AppPermissionRequests>
+    <AppPermissionRequest Scope="http://sharepoint/content/tenant" Right="Manage" />
+  </AppPermissionRequests>
+</App>
