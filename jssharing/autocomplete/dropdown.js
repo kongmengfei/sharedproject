@@ -13,7 +13,15 @@
 var items = items || {};
 
 $(function () {
-    Employees();
+    if(item){
+        items.forEach(item => {
+            console.log(item);
+            $("#ctl00_DropDownChoice").append(`<option value='${item["ID"]}'>${item["Title"]}</option>`);
+        });
+    }else{
+      Employees();
+    }
+    
 });
 
 // only get 'ID,Title,num'  fields. 
@@ -37,10 +45,15 @@ function _success(data, status) {
         console.log(item);
         $("#ctl00_DropDownChoice").append(`<option value='${item["ID"]}'>${item["Title"]}</option>`);
     });
+  
+    var selItem = sessionStorage.getItem("SelItem");
+    $('#CT100_DropdownChoice').val(selItem);    
 
     $('#ctl00_DropDownChoice').on('change', function () {
 
         let selected_item_id = $(this).val();
+      
+        sessionStorage.setItem("SelItem", selected_item_id);  
 
         alert(selected_item_id);  // shows the correct selected employees.
         // How do I get the other properties of the selected employees here?? such as email, designation, office in the REST query
