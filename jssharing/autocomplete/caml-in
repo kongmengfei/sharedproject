@@ -1,0 +1,177 @@
+/* Created from Chrome SP Editor */
+// Get all managerid first. 
+
+//test data
+// var response = {
+//     "d": {
+//         "results": [
+//             {
+//                 "__metadata": {
+//                     "id": "ff58d56e-23ba-4cfd-a565-eb291a6c90b4",
+//                     "uri": "https://isvdevchat.sharepoint.com/sites/testprivate/_api/Web/Lists(guid'a7630ee5-76f8-4c69-a60e-cf23032b197f')/Items(1)",
+//                     "etag": "\"3\"",
+//                     "type": "SP.Data.EmployeeListItem"
+//                 },
+//                 "ManagerId": "001"
+//             },
+//             {
+//                 "__metadata": {
+//                     "id": "ee054906-0bbb-47a4-be3d-35d266f90eb6",
+//                     "uri": "https://isvdevchat.sharepoint.com/sites/testprivate/_api/Web/Lists(guid'a7630ee5-76f8-4c69-a60e-cf23032b197f')/Items(2)",
+//                     "etag": "\"2\"",
+//                     "type": "SP.Data.EmployeeListItem"
+//                 },
+//                 "ManagerId": "001"
+//             },
+//             {
+//                 "__metadata": {
+//                     "id": "e9b9bebc-333a-440c-892f-c419c777241f",
+//                     "uri": "https://isvdevchat.sharepoint.com/sites/testprivate/_api/Web/Lists(guid'a7630ee5-76f8-4c69-a60e-cf23032b197f')/Items(3)",
+//                     "etag": "\"2\"",
+//                     "type": "SP.Data.EmployeeListItem"
+//                 },
+//                 "ManagerId": "009"
+//             },
+//             {
+//                 "__metadata": {
+//                     "id": "c4d45f3d-a6ce-44d8-8501-5e1c09fa828b",
+//                     "uri": "https://isvdevchat.sharepoint.com/sites/testprivate/_api/Web/Lists(guid'a7630ee5-76f8-4c69-a60e-cf23032b197f')/Items(4)",
+//                     "etag": "\"2\"",
+//                     "type": "SP.Data.EmployeeListItem"
+//                 },
+//                 "ManagerId": "009"
+//             },
+//             {
+//                 "__metadata": {
+//                     "id": "781884f8-04ea-455b-88d0-c38ca3574c45",
+//                     "uri": "https://isvdevchat.sharepoint.com/sites/testprivate/_api/Web/Lists(guid'a7630ee5-76f8-4c69-a60e-cf23032b197f')/Items(5)",
+//                     "etag": "\"2\"",
+//                     "type": "SP.Data.EmployeeListItem"
+//                 },
+//                 "ManagerId": "009"
+//             },
+//             {
+//                 "__metadata": {
+//                     "id": "36601ab3-5251-409d-b823-5a3b20da711c",
+//                     "uri": "https://isvdevchat.sharepoint.com/sites/testprivate/_api/Web/Lists(guid'a7630ee5-76f8-4c69-a60e-cf23032b197f')/Items(6)",
+//                     "etag": "\"2\"",
+//                     "type": "SP.Data.EmployeeListItem"
+//                 },
+//                 "ManagerId": "007"
+//             },
+//             {
+//                 "__metadata": {
+//                     "id": "b37fdcdd-19b2-4193-be28-c007356aa53e",
+//                     "uri": "https://isvdevchat.sharepoint.com/sites/testprivate/_api/Web/Lists(guid'a7630ee5-76f8-4c69-a60e-cf23032b197f')/Items(7)",
+//                     "etag": "\"2\"",
+//                     "type": "SP.Data.EmployeeListItem"
+//                 },
+//                 "ManagerId": "007"
+//             },
+//             {
+//                 "__metadata": {
+//                     "id": "de1ca99c-6bd5-4a82-8c96-118753a73e3b",
+//                     "uri": "https://isvdevchat.sharepoint.com/sites/testprivate/_api/Web/Lists(guid'a7630ee5-76f8-4c69-a60e-cf23032b197f')/Items(8)",
+//                     "etag": "\"2\"",
+//                     "type": "SP.Data.EmployeeListItem"
+//                 },
+//                 "ManagerId": "007"
+//             },
+//             {
+//                 "__metadata": {
+//                     "id": "d13f890b-0ea3-42a6-b454-dd4122f97ce5",
+//                     "uri": "https://isvdevchat.sharepoint.com/sites/testprivate/_api/Web/Lists(guid'a7630ee5-76f8-4c69-a60e-cf23032b197f')/Items(9)",
+//                     "etag": "\"1\"",
+//                     "type": "SP.Data.EmployeeListItem"
+//                 },
+//                 "ManagerId": null
+//             },
+//             {
+//                 "__metadata": {
+//                     "id": "74687119-f124-45d8-9029-6b8b1193ef7b",
+//                     "uri": "https://isvdevchat.sharepoint.com/sites/testprivate/_api/Web/Lists(guid'a7630ee5-76f8-4c69-a60e-cf23032b197f')/Items(10)",
+//                     "etag": "\"1\"",
+//                     "type": "SP.Data.EmployeeListItem"
+//                 },
+//                 "ManagerId": null
+//             }
+//         ]
+//     }
+// };
+
+$(function () {
+    sequentialStart();
+});
+
+async function sequentialStart() {
+    var res1 = await GetmanagerIds().catch(error => {
+        console.log(error);
+        return;
+    });
+
+    var filteredArray = res1.d.results.reduce((accumulator, current) => accumulator.find(item => item.ManagerId === current.ManagerId) ? accumulator : accumulator.push(current) && accumulator, []);
+
+    let optionValues = filteredArray.map(e => `<Value Type='Text'>${e.ManagerId}</Value>`).join('');
+    var caml = `<View><Query><Where><In><FieldRef Name='EmpNumber' /><Values>${optionValues}</Values></In></Where></Query></View>`;
+
+    var data = {
+        "query": {
+            "__metadata": { "type": "SP.CamlQuery" },
+            "ViewXml": caml
+        }
+    };
+
+    console.log(data);
+
+    var res2 = await GetmanagerRows(data);
+
+    console.log(res2);
+
+}
+
+function GetmanagerIds() {
+    var requestUrl1 = _spPageContextInfo.webAbsoluteUrl + "/_api/web/lists/getbytitle('employee')/items?$select= ManagerId";
+
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: requestUrl1,
+            method: "GET",
+            headers: {
+                "X-RequestDigest": $("#__REQUESTDIGEST").val(),
+                'content-type': 'application/json;odata=verbose',
+                'accept': 'application/json;odata=verbose'
+            },
+            success: function (response) {
+                resolve(response);
+            },
+            error: function (e) {
+                reject(e);
+                alert('fail-GetmanagerIds');
+            }
+        });
+    });
+}
+
+function GetmanagerRows(data) {
+    var requestUrl2 = _spPageContextInfo.webAbsoluteUrl + "/_api/web/lists/getbytitle('employee')/GetItems";
+
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: requestUrl2,
+            method: "POST",
+            data: JSON.stringify(data),
+            headers: {
+                "X-RequestDigest": $("#__REQUESTDIGEST").val(),
+                'content-type': 'application/json;odata=verbose',
+                'accept': 'application/json;odata=verbose'
+            },
+            success: function (response) {
+                resolve(response);
+            },
+            error: function (e) {
+                reject(e);
+                alert('fail');
+            }
+        });
+    });
+}
