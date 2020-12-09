@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "Kaifb/q6pnE0EpCTBw49Got6OOg/Y7+2UN4VefI58dhJeqOW/b3wFUY2FnqwUAA/2+oZuv7ai1PziY5mJ0Cbug==",
+  "success": true,
+  "projectFilePath": "D:\\github\\sharedproject\\CSOMNetCore\\ConsoleAppNetCore\\ConsoleAppNetCore\\ConsoleAppNetCore.csproj",
+  "expectedPackageFiles": [
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\mengfeik\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\6.8.0\\microsoft.identitymodel.jsonwebtokens.6.8.0.nupkg.sha512",
+    "C:\\Users\\mengfeik\\.nuget\\packages\\microsoft.identitymodel.logging\\6.8.0\\microsoft.identitymodel.logging.6.8.0.nupkg.sha512",
+    "C:\\Users\\mengfeik\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.8.0\\microsoft.identitymodel.tokens.6.8.0.nupkg.sha512",
+    "C:\\Users\\mengfeik\\.nuget\\packages\\microsoft.sharepointonline.csom\\16.1.20720.12000\\microsoft.sharepointonline.csom.16.1.20720.12000.nupkg.sha512",
+    "C:\\Users\\mengfeik\\.nuget\\packages\\system.identitymodel.tokens.jwt\\6.8.0\\system.identitymodel.tokens.jwt.6.8.0.nupkg.sha512",
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.security.cryptography.cng\\4.5.0\\system.security.cryptography.cng.4.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}

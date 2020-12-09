@@ -1,0 +1,12 @@
+D:\vs-repos\ConsoleAppNetCore\ConsoleAppCore02\bin\Debug\netcoreapp2.2\ConsoleAppCore02.deps.json
+D:\vs-repos\ConsoleAppNetCore\ConsoleAppCore02\bin\Debug\netcoreapp2.2\ConsoleAppCore02.runtimeconfig.json
+D:\vs-repos\ConsoleAppNetCore\ConsoleAppCore02\bin\Debug\netcoreapp2.2\ConsoleAppCore02.runtimeconfig.dev.json
+D:\vs-repos\ConsoleAppNetCore\ConsoleAppCore02\bin\Debug\netcoreapp2.2\ConsoleAppCore02.dll
+D:\vs-repos\ConsoleAppNetCore\ConsoleAppCore02\obj\Debug\netcoreapp2.2\ConsoleAppCore02.csprojAssemblyReference.cache
+D:\vs-repos\ConsoleAppNetCore\ConsoleAppCore02\obj\Debug\netcoreapp2.2\ConsoleAppCore02.AssemblyInfoInputs.cache
+D:\vs-repos\ConsoleAppNetCore\ConsoleAppCore02\obj\Debug\netcoreapp2.2\ConsoleAppCore02.AssemblyInfo.cs
+D:\vs-repos\ConsoleAppNetCore\ConsoleAppCore02\obj\Debug\netcoreapp2.2\ConsoleAppCore02.genruntimeconfig.cache
+D:\vs-repos\ConsoleAppNetCore\ConsoleAppCore02\bin\Debug\netcoreapp2.2\ConsoleAppCore02.pdb
+D:\vs-repos\ConsoleAppNetCore\ConsoleAppCore02\obj\Debug\netcoreapp2.2\ConsoleAppCore02.csproj.CoreCompileInputs.cache
+D:\vs-repos\ConsoleAppNetCore\ConsoleAppCore02\obj\Debug\netcoreapp2.2\ConsoleAppCore02.dll
+D:\vs-repos\ConsoleAppNetCore\ConsoleAppCore02\obj\Debug\netcoreapp2.2\ConsoleAppCore02.pdb
