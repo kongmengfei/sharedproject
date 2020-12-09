@@ -105,9 +105,10 @@ $(function () {
 
 async function sequentialStart() {
     var res1 = await GetmanagerIds().catch(error => {
-        console.log(error);
-        return;
+        console.log(error);       
     });
+    
+    if (!res1)return;
 
     var filteredArray = res1.d.results.reduce((accumulator, current) => accumulator.find(item => item.ManagerId === current.ManagerId) ? accumulator : accumulator.push(current) && accumulator, []);
 
