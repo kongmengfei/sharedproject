@@ -2,6 +2,7 @@ using Microsoft.SharePoint.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,38 +11,30 @@ namespace ConsoleApp1
     class Program
     {
         static void Main(string[] args)
-        {
-            string SiteUrl = "http://demoaam.contoso2016.com/sites/yyy";
+        {           
+            string SiteUrl = "https://isvdevchat.sharepoint.com/sites/sbdev";
 
-            var pwd = "xxxxx";
-            var username = "admin@contoso2016.com";
+            //var pwd = "dlmm=920625m";
+            var pwd = "gnckrrjmdwvbywtr";
+            var username = "support@ISVDevChat.onmicrosoft.com";
 
             Console.WriteLine("Hello World!");
 
-            ClientContext context = new ClientContext(SiteUrl)
-            {
-                Credentials = new System.Net.NetworkCredential(username, pwd)
-            };
+            ClientContext context = new ClientContext(SiteUrl);
+
+            SecureString securestring = new SecureString();
+            pwd.ToCharArray().ToList().ForEach(s => securestring.AppendChar(s));
+
+            context.Credentials = new SharePointOnlineCredentials(username, securestring);
+            
 
             var web = context.Web;
             context.Load(web);
             context.ExecuteQuery();
 
             Console.WriteLine($"web title: {web.Title}");
-
-            string sourceFile = "http://demoaam.contoso2016.com/sites/yyy/Shared%20Documents/custom.css";
-            string destFile = "http://demoaam.contoso2016.com/sites/yyy/Shared%20Documents/test/custom.css";
-
-            MoveCopyUtil.CopyFile(context, sourceFile, destFile,false, new MoveCopyOptions
-            {
-                KeepBoth= true
-            });
-
-            context.ExecuteQuery();
-
-            Console.ReadKey();
-
-            // Go to http://aka.ms/dotnet-get-started-console to continue learning how to build a console app! 
+            
+            Console.ReadKey();         
         }
     }
 }
