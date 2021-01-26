@@ -1,0 +1,100 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Bootstrap TreeView</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript"></script>
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div id="tree"></div>
+    </div>
+    <script type="text/javascript">
+
+        demo = {};
+        demo.baseRestUrl = _spPageContextInfo.webAbsoluteUrl;
+        var p = [];
+
+        p.push($.ajax({
+            url: demo.baseRestUrl + "/_api/Web/Lists(guid'ce805465-4625-45f8-9e50-f773b1cefb7a')/Items?$select=Title,GUID,Id",
+            method: 'GET',
+            dataType: "json"
+        }));
+
+        p.push($.ajax({
+            url: demo.baseRestUrl + "/_api/Web/Lists(guid'b7a1594b-9625-47c7-bac9-9a2f660f902d')/Items?$select=Title,GUID,Id,AssetCategoryDepartmentIdId",
+            method: 'GET',
+            dataType: "json"
+        }));
+
+        p.push($.ajax({
+            url: demo.baseRestUrl + "/_api/Web/Lists(guid'598b91e0-347a-4c55-b611-84c897e9e857')/Items?$select=Title,GUID,Id,AssetCategoryIdId",
+            method: 'GET',
+            dataType: "json"
+        }));
+
+        Promise.all(p).then(values => {
+            console.log('Ajax responses after they have all finished: ', values);
+
+            let dep = values[0].value;
+            let cat = values[1].value;
+            let ast = values[2].value;
+
+            demo.result = dep.map(d => {
+                var temp = new Object();
+                temp.guid = d.GUID;
+                temp.text = d.Title;
+
+                //check 
+                if (cat.find(c => d.Id == c.AssetCategoryDepartmentIdId)) {
+                    temp.hasChildren = true;
+                    temp.children = cat.filter(c => d.Id == c.AssetCategoryDepartmentIdId).map(c => {
+                        var temp1 = new Object();
+                        temp1.guid = c.GUID;
+                        temp1.text = c.Title;
+
+                        //check
+                        if (ast.find(a => c.Id == a.AssetCategoryIdId)) {
+                            temp1.hasChildren = true;
+                            temp1.children = ast.filter(a => c.Id == a.AssetCategoryIdId).map(a => {
+                                var temp2 = new Object();
+                                temp2.guid = a.GUID;
+                                temp2.text = a.Title;
+
+                                return temp2;
+                            });
+
+                        } else {
+                            temp.hasChildren = false;
+                        }
+
+                        return temp1;
+                    })
+                } else {
+                    temp.hasChildren = false;
+                    temp.children = [];
+                }
+
+                return temp;
+            });
+
+            console.log(demo);
+        });
+      
+        $(document).ready(function () {
+            $('#tree').tree({
+                uiLibrary: 'bootstrap',
+                dataSource: demo.result,
+                primaryKey: 'guid',
+                imageUrlField: 'flagUrl'
+            });
+        });
+    </script>
+</body>
+
+</html>
