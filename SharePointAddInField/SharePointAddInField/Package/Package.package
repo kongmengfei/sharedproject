@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package dslVersion="1.0.0.0" 
+        Id="7c8f7582-4ac7-4a11-b885-b61728cee37f" 
+        solutionId="7c8f7582-4ac7-4a11-b885-b61728cee37f" 
+        xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel" 
+        name="SharePointAddInField"
+        sharePointProductVersion="15.0">
+  <features>
+        <featureReference itemId="7ed69b65-8f4a-4fad-b2d3-e1a47037587c" />
+  </features>
+</package>

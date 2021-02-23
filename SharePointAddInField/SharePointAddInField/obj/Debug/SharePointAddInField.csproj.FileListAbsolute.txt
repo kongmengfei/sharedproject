@@ -1,0 +1,4 @@
+C:\repro-vs\SharePointAddInField\SharePointAddInField\bin\Debug\SharePointAddInField.pdb
+C:\repro-vs\SharePointAddInField\SharePointAddInField\obj\Debug\SharePointAddInField.csproj.CoreCompileInputs.cache
+C:\repro-vs\SharePointAddInField\SharePointAddInField\obj\Debug\SharePointAddInField.dll
+C:\repro-vs\SharePointAddInField\SharePointAddInField\obj\Debug\SharePointAddInField.pdb

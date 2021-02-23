@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <!-- Parent ContentType: Item (0x01) -->
+  <ContentType ID="0x01003E19BBF2A0A243B385E540A917C0E18A" Name="ContentType1" Group="Custom Content Types" Description="My Content Type" Inherits="TRUE" Version="0">
+    <FieldRefs>
+      <FieldRef ID="{7937B753-CAE7-48EC-B959-7535430E17E3}" DisplayName="Beschreibung" Required="FALSE" Name="ZDTDescription" NumLines="6" />
+    </FieldRefs>
+  </ContentType>
+</Elements>

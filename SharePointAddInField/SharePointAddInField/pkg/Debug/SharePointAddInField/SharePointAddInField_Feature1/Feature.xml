@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Description="SharePoint Add-in Feature" Id="7ed69b65-8f4a-4fad-b2d3-e1a47037587c" Scope="Web" Title="SharePointAddInField Feature1" Version="1.0.0.0">
+  <ElementManifests>
+    <ElementManifest Location="Pages\Elements.xml" />
+    <ElementFile Location="Pages\Default.aspx" />
+    <ElementManifest Location="Scripts\Elements.xml" />
+    <ElementFile Location="Scripts\App.js" />
+    <ElementFile Location="Scripts\jquery-3.4.1.slim.min.map" />
+    <ElementFile Location="Scripts\jquery-3.4.1.slim.min.js" />
+    <ElementFile Location="Scripts\jquery-3.4.1.slim.js" />
+    <ElementFile Location="Scripts\jquery-3.4.1.min.map" />
+    <ElementFile Location="Scripts\jquery-3.4.1.min.js" />
+    <ElementFile Location="Scripts\jquery-3.4.1.js" />
+    <ElementFile Location="Scripts\jquery-3.4.1.intellisense.js" />
+    <ElementManifest Location="Content\Elements.xml" />
+    <ElementFile Location="Content\App.css" />
+    <ElementManifest Location="Images\Elements.xml" />
+    <ElementFile Location="Images\AppIcon.png" />
+    <ElementManifest Location="Beschreibung\Elements.xml" />
+    <ElementManifest Location="ContentType1\Elements.xml" />
+    <ElementManifest Location="List1Instance\Elements.xml" />
+    <ElementManifest Location="List1\Elements.xml" />
+    <ElementFile Location="List1\Schema.xml" />
+  </ElementManifests>
+  <UpgradeActions>
+    <VersionRange>
+      <ApplyElementManifests>
+        <ElementManifest Location="Pages\Elements.xml" />
+        <ElementManifest Location="Scripts\Elements.xml" />
+        <ElementManifest Location="Content\Elements.xml" />
+        <ElementManifest Location="Images\Elements.xml" />
+        <ElementManifest Location="Beschreibung\Elements.xml" />
+        <ElementManifest Location="ContentType1\Elements.xml" />
+        <ElementManifest Location="List1Instance\Elements.xml" />
+        <ElementManifest Location="List1\Elements.xml" />
+      </ApplyElementManifests>
+    </VersionRange>
+  </UpgradeActions>
+</Feature>
